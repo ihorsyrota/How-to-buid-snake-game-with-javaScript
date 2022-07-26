@@ -1,8 +1,8 @@
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
 
-let speed = 7;
-let tileSize = 20;
+let speed = 2;
+let tileSize = 10;
 let tileCount = canvas.clientHeight / tileSize;
 
 let headX = 10;
@@ -164,5 +164,25 @@ function resolveKeyboardEvents(keyboardEvent) {
 
 //add keyboard event listener to our body
 document.body.addEventListener('keydown', resolveKeyboardEvents);
+
+// on screen buttons
+const btn = document.getElementsByTagName('button');
+btn[4].addEventListener('click', () => {
+  if (isGameOver) {
+    resetGame();
+    drawGame();
+  }
+});
+
+let vel = (xvel, yvel, stop) => {
+  xvelocity = xvel;
+  yvelocity = yvel;
+  for (let i = 0; i < 4; i++) {
+    console.log(i);
+    btn[i].disabled = false;
+  }
+  btn[stop].disabled = true;
+}
+
 
 drawGame();
